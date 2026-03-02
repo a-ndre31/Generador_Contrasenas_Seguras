@@ -17,7 +17,7 @@ Incluye un modo accesible orientado a adultos mayores y personas con baja alfabe
 -  Botón para copiar al portapapeles
 -  Arquitectura modular (N-Tier)
 
----
+
 
 ##  Tecnologías Utilizadas
 
@@ -28,7 +28,7 @@ Incluye un modo accesible orientado a adultos mayores y personas con baja alfabe
 - Git
 - GitHub
 
----
+
 
 # Estructura del Proyecto
 # Cómo Ejecutar el Proyecto
@@ -72,4 +72,5 @@ Integrar conocimientos de:
 
 # Captura del Sistema
 
-(Agregar imagen aquí)
+![Vista del Sistema](screenshot1.png)
+![Vista del Sistema](screenshot2.png)
