@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador Inteligente de Contraseñas</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+            width: 80%;
+        }
+
+        button {
+            background-color: #00c6ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0072ff;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            word-wrap: break-word;
+            font-weight: bold;
+        }
+
+        .debil { color: #ff4d4d; }
+        .media { color: #ffcc00; }
+        .fuerte { color: #00ff99; }
+        .muyfuerte { color: #00ff00; }
+
+        .barra {
+            height: 10px;
+            background: white;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .progreso {
+            height: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🔐 Generador Inteligente</h1>
+
+    <form method="POST">
+
+        <select name="tipo" required>
+            <option value="segura">Alta Seguridad</option>
+            <option value="memorable">Fácil de Recordar (Adultos Mayores)</option>
+        </select>
+
+        <button type="submit">Generar Contraseña</button>
+
+    </form>
+
+    {% if contrasena %}
+        <div class="resultado">
+
+            <p>Contraseña:</p>
+            <p id="password">{{ contrasena }}</p>
+
+            <button onclick="copiar()">Copiar</button>
+
+            <p>Entropía: {{ entropia }} bits</p>
+
+            <p class="
+                {% if nivel == 'Débil' %} debil
+                {% elif nivel == 'Media' %} media
+                {% elif nivel == 'Fuerte' %} fuerte
+                {% else %} muyfuerte
+                {% endif %}
+            ">
+                Nivel: {{ nivel }}
+            </p>
+
+            <div class="barra">
+                <div class="progreso"
+                     style="width: {{ entropia }}%;
+                     background:
+                        {% if nivel == 'Débil' %} #ff4d4d
+                        {% elif nivel == 'Media' %} #ffcc00
+                        {% elif nivel == 'Fuerte' %} #00ff99
+                        {% else %} #00ff00
+                        {% endif %};">
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
+</div>
+
+<script>
+function copiar() {
+    const texto = document.getElementById("password").innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Contraseña copiada al portapapeles");
+}
+</script>
+
+</body>
+</html>
